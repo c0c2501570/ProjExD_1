@@ -20,15 +20,17 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        key_lst = pg.key.get_pressed()
+        key_lst = pg.key.get_pressed()#練習１０－３全キ状態の取得
+        dx, dy = -1, 0                  # ← 何もしなければ左に-1流れる（演習1-1）
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0, -1))
+            dy -= 1
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, 1))
+            dy += 1
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
+            dx -= 1
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((1, 0))
+            dx += 2                     # ← 右キーで+2（合計+1で右に進む：演習1-2）
+        kk_rct.move_ip((dx, dy))        # ← 移動を1回にまとめる（演習2も同時に達成！）
 
         x = tmr % 3200# ← 追加（練習5）# 練習9：0〜3199で繰り返す
         screen.blit(bg_img, [-x, 0])
